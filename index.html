@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Emanuel G. Bolig | Portfolio</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
+              rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <style>
+        :root { --primary-color: #0d6efd; transition: all 0.3s ease; }
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
+        .hero-section { padding: 140px 0 100px; }
+        .skill-badge { padding: 8px 16px; border-radius: 50px; background: rgba(13, 110, 253, 0.1); font-size: 0.85rem; font-weight: 600; color: var(--primary-color); border: 1px solid var(--primary-color); }
+        .experience-card { border-left: 4px solid var(--primary-color); transition: all 0.3s ease; cursor: pointer; border-radius: 0 12px 12px 0; }
+        .experience-card:hover { background: rgba(13, 110, 253, 0.05); transform: translateX(5px); }
+        .modal-img { width: 100%; border-radius: 12px; margin-bottom: 15px; object-fit: cover; height: 250px; }
+        .nav-link { cursor: pointer; }
+        </style>
+    </head>
+    <body data-bs-theme="light">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="#">EMANUELGB<span class="text-body">.DEV</span></a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#inicio" data-i18n="nav-home">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#experiencia" data-i18n="nav-exp">Experiencia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#habilidades" data-i18n="nav-skills">Habilidades</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center ms-lg-3 gap-2">
+                            <select class="form-select form-select-sm w-auto" id="languageSelector">
+                                <option value="es">ES</option>
+                                <option value="en">EN</option>
+                            </select>
+                            <button class="btn btn-outline-primary btn-sm rounded-pill"
+                                    id="darkModeToggle">
+                                <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <header id="inicio" class="hero-section bg-body-secondary">
+            <div class="container text-center text-lg-start">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <h5 class="text-primary fw-bold mb-3" data-i18n="hero-tag">Disponible para nuevos desafíos</h5>
+                        <h1 class="display-3 fw-bold mb-4">Emanuel G. Bolig</h1>
+                        <p class="lead text-body-secondary mb-5" data-i18n="hero-desc">
+                            Software Developer especializado en el desarrollo de aplicaciones móviles y web.
+                        </p>
+                        <div class="d-flex justify-content-center justify-content-lg-start gap-3">
+                            <a href="mailto:egomezbolig@gmail.com"
+                               class="btn btn-primary btn-lg px-4"
+                               data-i18n="btn-contact">Hablemos</a>
+                            <a href="https://github.com/EmanuelGBolig"
+                               target="_blank"
+                               class="btn btn-outline-body btn-lg px-4">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section id="experiencia" class="py-5">
+            <div class="container py-4">
+                <h2 class="fw-bold mb-5" data-i18n="nav-exp">Experiencia Profesional</h2>
+                <div class="experience-card bg-body-tertiary p-4 mb-4 shadow-sm"
+                     data-bs-toggle="modal"
+                     data-bs-target="#modalEmptyFly">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap">
+                        <h4 class="fw-bold">Front-End / Mobile Developer</h4>
+                        <span class="badge bg-dark px-3 py-2">2024 - 2025</span>
+                    </div>
+                    <p class="text-primary fw-bold mb-1">EmptyFly (Remote)</p>
+                    <p class="text-body-secondary mb-0" data-i18n="click-detail">Haz clic para ver detalles e imágenes →</p>
+                </div>
+                <div class="experience-card bg-body-tertiary p-4 mb-4 shadow-sm"
+                     data-bs-toggle="modal"
+                     data-bs-target="#modalPadel">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap">
+                        <h4 class="fw-bold" data-i18n="padel-title">Sistema de Gestión de Paddle</h4>
+                        <span class="badge bg-primary px-3 py-2 text-white" data-i18n="featured">Proyecto</span>
+                    </div>
+                    <p class="text-primary fw-bold mb-1">Full-Stack Developer</p>
+                    <p class="text-body-secondary mb-0" data-i18n="click-detail">Haz clic para ver detalles e imágenes →</p>
+                </div>
+            </div>
+        </section>
+        <div class="modal fade"
+             id="modalEmptyFly"
+             tabindex="-1"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <h5 class="modal-title fw-bold">EmptyFly - Private Flight Booking</h5>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-2 mb-4">
+                            <div class="col-md-4">
+                                <img src="emptyfly3.jpeg"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Búsqueda de vuelos">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="emptyfly2.jpeg"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Listado de compartidos">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="emptyfly1.jpeg"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Sección favoritos">
+                            </div>
+                        </div>
+                        <h6 class="fw-bold text-primary" data-i18n="modal-empty-subtitle">Detalles del Desarrollo</h6>
+                        <p class="small text-body-secondary" data-i18n="modal-empty-full-desc">
+                            Participé en el desarrollo de esta aplicación de reserva de vuelos privados utilizando <strong>React Native</strong>.
+                            Como se observa en las capturas, implementé la lógica de filtrado por tipo de vuelo (Empty Leg, Compartido, Entero),
+                            la integración de mapas para selección de aeropuertos y el sistema de gestión de favoritos.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="skill-badge">React Native</span>
+                            <span class="skill-badge">Cross-Platform (iOS/Android)</span>
+                            <span class="skill-badge">UI/UX Implementation</span>
+                            <span class="skill-badge">API Integration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalPadel" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" data-i18n="padel-title">Sistema de Torneos de Paddle</h5>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-2 mb-4">
+                            <div class="col-md-4">
+                                <img src="padelapp1.png"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Búsqueda de vuelos">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="padelapp2.png"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Listado de compartidos">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="padelapp3.png"
+                                     class="img-fluid rounded-3 shadow-sm"
+                                     alt="Sección favoritos">
+                            </div>
+                        </div>
+                        <p data-i18n="modal-padel-desc">
+                            Explicación técnica: Desarrollo de algoritmos para generación de llaves (brackets), actualización de resultados en vivo y base de datos para ranking de jugadores.
+                        </p>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">Django</span>
+                            <span class="skill-badge">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section id="habilidades" class="py-5 bg-body-tertiary">
+            <div class="container py-4 text-center">
+                <h2 class="fw-bold mb-4" data-i18n="skills-title">Stack Técnico</h2>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    <span class="skill-badge">React Native</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">C#</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">SQL Server</span>
+                </div>
+            </div>
+        </section>
+        <footer id="contacto" class="py-5 bg-dark text-white text-center">
+            <div class="container">
+                <div class="d-flex justify-content-center gap-4 mb-4">
+                    <a href="https://www.linkedin.com/in/emanuel-gbolig"
+                       target="_blank"
+                       class="text-white fs-2"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/EmanuelGBolig"
+                       target="_blank"
+                       class="text-white fs-2"><i class="bi bi-github"></i></a>
+                    <a href="mailto:egomezbolig@gmail.com" class="text-white fs-2"><i class="bi bi-envelope-at-fill"></i></a>
+                </div>
+                <p class="small opacity-50">© 2026 Emanuel G. Bolig - Mar del Plata</p>
+            </div>
+        </footer>
+        <script>
+        const translations = {
+            es: {
+                "nav-home": "Inicio", "nav-exp": "Experiencia", "nav-skills": "Habilidades",
+                "hero-tag": "Disponible para nuevos desafíos",
+                "hero-desc": "Software Developer especializado en el desarrollo de aplicaciones móviles y web.",
+                "btn-contact": "Contacto", "featured": "Proyecto",
+                "padel-title": "Sistema de Gestión de Paddle",
+                "click-detail": "Haz clic para ver detalles e imágenes →",
+                "skills-title": "Stack Técnico",
+                "modal-empty-desc": "Desarrollo de funcionalidades móviles con React Native, asegurando compatibilidad multiplataforma y mejoras de UI/UX para producción.",
+                "modal-padel-desc": "Lógica compleja para torneos, gestión de usuarios y visualización de resultados en tiempo real."
+            },
+            en: {
+                "nav-home": "Home", "nav-exp": "Experience", "nav-skills": "Skills",
+                "hero-tag": "Available for new challenges",
+                "hero-desc": "Software Developer specialized in mobile and web development.",
+                "btn-contact": "Contact", "featured": "Project",
+                "padel-title": "Padel Tournament System",
+                "click-detail": "Click to see details and images →",
+                "skills-title": "Tech Stack",
+                "modal-empty-desc": "Developed mobile features using React Native, ensuring cross-platform compatibility and UI/UX improvements for production.",
+                "modal-padel-desc": "Complex tournament logic, user management, and real-time result visualization."
+            }
+        };
+
+        // Lógica de Idioma
+        document.getElementById('languageSelector').addEventListener('change', (e) => {
+            const lang = e.target.value;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerText = translations[lang][key];
+            });
+        });
+
+        // Lógica Modo Oscuro
+        const themeToggle = document.getElementById('darkModeToggle');
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.setAttribute('data-bs-theme', newTheme);
+            document.getElementById('themeIcon').classList.toggle('bi-moon-stars-fill');
+            document.getElementById('themeIcon').classList.toggle('bi-sun-fill');
+        });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
