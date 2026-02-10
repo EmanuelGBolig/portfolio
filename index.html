@@ -127,9 +127,9 @@
                             <button type="button" data-bs-target="#carEmpty" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active"><img src="emptyfly3.jpeg" class="img-preview" alt="1"></div>
-                            <div class="carousel-item"><img src="emptyfly2.jpeg" class="img-preview" alt="2"></div>
-                            <div class="carousel-item"><img src="emptyfly1.jpeg" class="img-preview" alt="3"></div>
+                            <div class="carousel-item active"><img src="emptyfly3.jpeg" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="emptyfly2.jpeg" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="emptyfly1.jpeg" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carEmpty" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -167,9 +167,9 @@
                             <button type="button" data-bs-target="#carPadel" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active"><img src="padelapp1.png" class="img-preview" alt="1"></div>
-                            <div class="carousel-item"><img src="padelapp2.png" class="img-preview" alt="2"></div>
-                            <div class="carousel-item"><img src="padelapp3.png" class="img-preview" alt="3"></div>
+                            <div class="carousel-item active"><img src="padelapp1.png" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="padelapp2.png" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="padelapp3.png" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carPadel" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -285,8 +285,10 @@
 
 
         // Lightbox Function
+        // Lightbox Function
         function openLightbox(img) {
-            const modal = new bootstrap.Modal(document.getElementById('lightboxModal'));
+            const modalEl = document.getElementById('lightboxModal');
+            const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
             document.getElementById('lightboxImage').src = img.src;
             modal.show();
         }
