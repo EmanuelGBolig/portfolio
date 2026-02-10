@@ -27,6 +27,7 @@
 </head>
 <body data-bs-theme="light">
 
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="#">EMANUELGB<span class="text-body">.DEV</span></a>
@@ -48,6 +49,7 @@
                         </button>
                     </li>
                 </ul>
+
             </div>
         </div>
     </nav>
@@ -73,9 +75,20 @@
             <div class="row align-items-center g-5">
                 <div class="col-lg-6">
                     <h2 class="fw-bold mb-4" data-i18n="about-title">Sobre mí</h2>
-                    <p class="lead text-primary fw-bold" data-i18n="about-subtitle">Desarrollador orientado a resultados con base en Mar del Plata.</p>
-                    <p class="text-body-secondary" data-i18n="about-text-1">Soy Técnico Superior en Desarrollo de Software egresado del IDRA. Mi enfoque combina la creación de aplicaciones móviles y web con soporte IT.</p>
-                    <p class="text-body-secondary" data-i18n="about-text-2">Experiencia en entornos ágiles y optimización de código multiplataforma.</p>
+                    <p class="lead text-primary fw-600" data-i18n="about-subtitle">Desarrollador orientado a resultados con base en Mar del Plata.</p>
+                    <p class="text-body-secondary" data-i18n="about-text-1">
+                        Soy Técnico Superior en Desarrollo de Software. Mi enfoque combina la creación de aplicaciones móviles y web con una sólida base técnica en soporte IT y resolución de incidentes.
+                    </p>
+                    <p class="text-body-secondary" data-i18n="about-text-2">
+                        Cuento con experiencia entregando soluciones en entornos ágiles (Scrum/Kanban), siempre priorizando la calidad del código y la compatibilidad multiplataforma. Me apasiona enfrentar desafíos técnicos que requieran pensamiento analítico y soluciones orientadas al negocio.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4 bg-body-secondary rounded-4 shadow-sm border text-center">
+                        <i class="bi bi-code-square display-1 text-primary mb-3"></i>
+                        <h5 class="fw-bold" data-i18n="about-focus">Enfoque Principal</h5>
+                        <p class="small text-muted" data-i18n="about-focus-desc">Desarrollo Multiplataforma (iOS/Android), QA Testing y Soporte Técnico especializado.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -270,6 +283,7 @@
             document.getElementById('themeIcon').classList.toggle('bi-sun-fill');
         });
 
+
         // Lightbox Function
         function openLightbox(img) {
             const modal = new bootstrap.Modal(document.getElementById('lightboxModal'));
@@ -279,3 +293,4 @@
     </script>
 </body>
 </html>
+
