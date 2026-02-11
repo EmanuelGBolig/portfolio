@@ -237,6 +237,12 @@
             font-weight: 600;
             letter-spacing: 2px;
         }
+
+        /* Footer Dark Mode Styling */
+        [data-bs-theme="dark"] footer {
+            background-color: #0d1117 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
     </style>
 </head>
 <body data-bs-theme="light">
@@ -474,21 +480,45 @@
         </div>
     </div>
 
-    <section id="habilidades" class="py-5 bg-body-secondary">
-        <div class="container py-4 text-center">
-            <h2 class="fw-bold mb-4" data-i18n="nav-skills">Stack Técnico</h2>
-            <div class="d-flex flex-wrap justify-content-center gap-2" data-aos="zoom-in">
-                <a href="https://reactnative.dev/" target="_blank" class="skill-badge" data-color="react">React Native</a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-badge" data-color="js">JavaScript</a>
-                <a href="https://www.typescriptlang.org/" target="_blank" class="skill-badge" data-color="ts">TypeScript</a>
-                <a href="https://www.python.org/" target="_blank" class="skill-badge" data-color="python">Python</a>
-                <a href="https://www.microsoft.com/en-us/sql-server" target="_blank" class="skill-badge" data-color="sql">SQL Server</a>
-                <a href="https://www.djangoproject.com/" target="_blank" class="skill-badge" data-color="django">Django</a>
-                <a href="https://git-scm.com/" target="_blank" class="skill-badge" data-color="git">Git</a>
-                <a href="https://github.com/" target="_blank" class="skill-badge" data-color="github">GitHub</a>
-                <a href="https://getbootstrap.com/" target="_blank" class="skill-badge" data-color="bootstrap">Bootstrap</a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="skill-badge" data-color="html">HTML</a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="skill-badge" data-color="css">CSS</a>
+    <section id="habilidades" class="py-5">
+        <div class="container py-4">
+            <h2 class="fw-bold mb-5 text-center" data-i18n="nav-skills">Stack Técnico</h2>
+            <div class="row g-4" data-aos="fade-up">
+                <!-- Frontend/Mobile -->
+                <div class="col-md-4">
+                    <div class="p-4 bg-body-secondary rounded-4 h-100">
+                        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-phone me-2"></i>Mobile & Frontend</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://reactnative.dev/" target="_blank" class="skill-badge" data-color="react">React Native</a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="skill-badge" data-color="js">JavaScript</a>
+                            <a href="https://www.typescriptlang.org/" target="_blank" class="skill-badge" data-color="ts">TypeScript</a>
+                            <a href="https://getbootstrap.com/" target="_blank" class="skill-badge" data-color="bootstrap">Bootstrap</a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="skill-badge" data-color="html">HTML</a>
+                            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="skill-badge" data-color="css">CSS</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Backend -->
+                <div class="col-md-4">
+                    <div class="p-4 bg-body-secondary rounded-4 h-100">
+                        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-server me-2"></i>Backend & Database</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://www.python.org/" target="_blank" class="skill-badge" data-color="python">Python</a>
+                            <a href="https://www.djangoproject.com/" target="_blank" class="skill-badge" data-color="django">Django</a>
+                            <a href="https://www.microsoft.com/en-us/sql-server" target="_blank" class="skill-badge" data-color="sql">SQL Server</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tools -->
+                <div class="col-md-4">
+                    <div class="p-4 bg-body-secondary rounded-4 h-100">
+                        <h5 class="fw-bold text-primary mb-3"><i class="bi bi-tools me-2"></i>Herramientas</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <a href="https://git-scm.com/" target="_blank" class="skill-badge" data-color="git">Git</a>
+                            <a href="https://github.com/" target="_blank" class="skill-badge" data-color="github">GitHub</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
