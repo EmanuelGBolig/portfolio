@@ -259,10 +259,9 @@
                     <li class="nav-item"><a class="nav-link" href="#experiencia" data-i18n="nav-exp">Experiencia</a></li>
                     <li class="nav-item"><a class="nav-link" href="cv_emanuel_bolig_en.pdf" target="_blank" data-i18n="nav-cv">CV</a></li>
                     <li class="nav-item d-flex align-items-center ms-lg-3 gap-2">
-                        <select class="form-select form-select-sm w-auto" id="languageSelector">
-                            <option value="es">ES</option>
-                            <option value="en">EN</option>
-                        </select>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill" id="languageToggle">
+                            <i class="bi bi-globe me-1"></i><span id="currentLang">ES</span>
+                        </button>
                         <button class="btn btn-outline-primary btn-sm rounded-pill" id="darkModeToggle">
                             <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
                         </button>
@@ -310,7 +309,7 @@
                     <div class="p-4 bg-body-secondary rounded-4 shadow-sm border text-center">
                         <i class="bi bi-code-square display-1 text-primary mb-3"></i>
                         <h5 class="fw-bold" data-i18n="about-focus">Enfoque Principal</h5>
-                        <p class="small text-muted" data-i18n="about-focus-desc">Desarrollo Multiplataforma (iOS/Android), Desarrollo de Paginas Web, QA Testing y Soporte Técnico especializado.</p>
+                        <p class="small text-muted" data-i18n="about-focus-desc">Desarrollo Multiplataforma (iOS/Android), desarrollo de Paginas Web, QA Testing y Soporte Técnico especializado.</p>
                     </div>
                 </div>
             </div>
@@ -530,7 +529,7 @@
                 "modal-padel-subtitle": "Detalles del Proyecto",
                 "modal-padel-desc": "Desarrollo general de la aplicacion web 100% responsiva, creacion de cuentas, implementacion de algoritmos para generación de llaves (brackets), actualización de resultados en vivo y base de datos para ranking.",
                 "about-focus": "Enfoque Principal",
-                "about-focus-desc": "Desarrollo Multiplataforma (iOS/Android), QA Testing y Soporte Técnico especializado.",
+                "about-focus-desc": "Desarrollo Multiplataforma (iOS/Android), desarrollo de Paginas Web, QA Testing y Soporte Técnico especializado.",
                 "modal-tech": "Tecnologías Utilizadas"
             },
             en: {
@@ -566,14 +565,21 @@
             document.querySelector('a[data-i18n="btn-cv"]').setAttribute('href', cvFile);
         }
 
-        document.getElementById('languageSelector').addEventListener('change', (e) => {
-            const lang = e.target.value;
+        // Language toggle functionality
+        let currentLanguage = 'es';
+        
+        document.getElementById('languageToggle').addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'es' ? 'en' : 'es';
+            document.getElementById('currentLang').textContent = currentLanguage.toUpperCase();
+            
+            // Update all translated elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                el.innerText = translations[lang][key];
+                el.innerText = translations[currentLanguage][key];
             });
-            // Update CV links when language changes
-            updateCVLinks(lang);
+            
+            // Update CV links
+            updateCVLinks(currentLanguage);
         });
 
         // Set initial CV links based on default language
