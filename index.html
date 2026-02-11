@@ -231,19 +231,41 @@
             100% { transform: rotate(360deg); }
         }
         .loader-text {
-            display: block;
-            margin: 20px auto 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% + 60px));
             color: #fff;
             font-size: 18px;
             font-weight: 600;
             letter-spacing: 2px;
-            text-align: center;
+            white-space: nowrap;
         }
 
         /* Footer Dark Mode Styling */
         [data-bs-theme="dark"] footer {
             background-color: #0d1117 !important;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mobile Navbar Spacing */
+        @media (max-width: 991px) {
+            .navbar-toggler {
+                margin-right: 8px;
+            }
+        }
+
+        /* Fix modal viewport rescaling on mobile */
+        .modal-open {
+            padding-right: 0 !important;
+        }
+        body {
+            overflow-x: hidden;
+        }
+        @media (max-width: 768px) {
+            .modal {
+                padding-right: 0 !important;
+            }
         }
     </style>
 </head>
