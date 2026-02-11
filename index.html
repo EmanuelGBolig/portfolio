@@ -197,9 +197,53 @@
             .lightbox-nav.prev { left: 40px; }
             .lightbox-nav.next { right: 40px; }
         }
+
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #fff;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loader-text {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body data-bs-theme="light">
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text" data-i18n="loader-text">CARGANDO...</div>
+    </div>
 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm fixed-top">
@@ -465,13 +509,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/typewriter-effect@2.18.2/dist/core.js"></script>
     <script>
-        AOS.init({
-            once: true,
-            offset: 100,
-            duration: 800,
-            easing: 'ease-out-cubic',
-        });
-
+        // Typewriter effect initialization
         new Typewriter('#hero-typewriter', {
             strings: ['Software Developer', 'React Native Specialist', 'Full Stack Developer'],
             autoStart: true,
@@ -483,6 +521,7 @@
                 "nav-home": "Inicio", "nav-exp": "Experiencia", "nav-skills": "Stack Tecnológico", "nav-cv": "CV",
                 "hero-tag": "Disponible para desafíos", "hero-location": "con base en Mar del Plata.",
                 "btn-contact": "Contacto", "btn-cv": "Descargar CV", "padel-title": "Sistema de Paddle",
+                "loader-text": "CARGANDO...",
                 "click-detail": "Ver detalles e imágenes →", "about-title": "Sobre mí",
                 "about-subtitle": "Técnico Superior en Desarrollo de Software.",
                 "about-text-1": "Soy Técnico Superior en Desarrollo de Software. Mi enfoque combina la creación de aplicaciones móviles y web con una sólida base técnica en soporte IT y resolución de incidentes priorizando la experiencia del usuario.",
@@ -499,6 +538,7 @@
                 "nav-home": "Home", "nav-exp": "Experience", "nav-skills": "Skills", "nav-cv": "CV",
                 "hero-tag": "Available for challenges", "hero-location": "based in Mar del Plata.",
                 "btn-contact": "Contact", "btn-cv": "Download CV", "padel-title": "Padel System",
+                "loader-text": "LOADING...",
                 "click-detail": "See details and images →", "about-title": "About Me",
                 "about-subtitle": "Software Development Technician.",
                 "about-text-1": "I am a Higher Technician in Software Development. My focus combines the creation of mobile and web applications with a solid technical background in IT support and incident resolution, prioritizing user experience.",
@@ -539,6 +579,26 @@
 
         // Set initial CV links based on default language
         updateCVLinks('es');
+
+        // Hide loader when page is fully loaded
+        window.addEventListener('load', () => {
+            // Wait a minimum time before hiding loader
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+                // Remove loader from DOM after transition
+                setTimeout(() => {
+                    loader.remove();
+                    // Initialize AOS animations after loader is gone
+                    AOS.init({
+                        once: true,
+                        offset: 100,
+                        duration: 800,
+                        easing: 'ease-out-cubic',
+                    });
+                }, 800);
+            }, 1000); // Minimum display time: 1 second
+        });
 
         const themeToggle = document.getElementById('darkModeToggle');
         themeToggle.addEventListener('click', () => {
