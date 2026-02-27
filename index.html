@@ -12,10 +12,9 @@
     
     <style>
         :root { --primary-color: #0d6efd; transition: all 0.3s ease; }
-        :root { --primary-color: #0d6efd; transition: all 0.3s ease; }
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s; }
         h1, h2, h3, h4, h5, h6, .navbar-brand { font-family: 'Outfit', sans-serif; }
-        .hero-section { padding: 140px 0 100px; }
         .hero-section { padding: 140px 0 100px; }
 
         /* Gradients & Colors */
@@ -288,7 +287,7 @@
                     <li class="nav-item"><a class="nav-link" href="#inicio" data-i18n="nav-home">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sobre-mi" data-i18n="about-title">Sobre mí</a></li>
                     <li class="nav-item"><a class="nav-link" href="#experiencia" data-i18n="nav-exp">Experiencia</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cv_emanuel_bolig_en.pdf" target="_blank" data-i18n="nav-cv">CV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="CV_Emanuel_Bolig_ES.pdf" target="_blank" data-i18n="nav-cv">CV</a></li>
                     <li class="nav-item d-flex align-items-center ms-lg-3 gap-2">
                         <button class="btn btn-outline-primary btn-sm rounded-pill" id="languageToggle">
                             <i class="bi bi-globe me-1"></i><span id="currentLang">ES</span>
@@ -316,7 +315,7 @@
                     <p class="lead text-body-secondary mb-5"><span id="hero-typewriter" class="text-primary fw-semibold"></span></p>
                     <div class="d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start gap-3" data-aos="fade-up" data-aos-delay="200">
                         <a href="#contacto" class="btn btn-primary btn-lg px-4" data-i18n="btn-contact">Hablemos</a>
-                        <a href="cv_emanuel_bolig_en.pdf" target="_blank" class="btn btn-outline-primary btn-lg px-4" data-i18n="btn-cv"><i class="bi bi-file-earmark-person me-2"></i>Descargar CV</a>
+                        <a href="CV_Emanuel_Bolig_ES.pdf" target="_blank" class="btn btn-outline-primary btn-lg px-4" data-i18n="btn-cv"><i class="bi bi-file-earmark-person me-2"></i>Descargar CV</a>
                     </div>
                 </div>
             </div>
@@ -567,13 +566,24 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/typewriter-effect@2.18.2/dist/core.js"></script>
     <script>
-        // Typewriter effect initialization
-        new Typewriter('#hero-typewriter', {
-            strings: ['Software Developer', 'React Native Specialist', 'Full Stack Developer'],
-            autoStart: true,
-            loop: true,
-            delay: 75,
-        });
+        // Typewriter effect
+        const typewriterStrings = {
+            es: ['Desarrollador de Software', 'Especialista en React Native', 'Desarrollador Full Stack'],
+            en: ['Software Developer', 'React Native Specialist', 'Full Stack Developer']
+        };
+
+        function initTypewriter(lang) {
+            const el = document.getElementById('hero-typewriter');
+            el.innerHTML = '';
+            new Typewriter(el, {
+                strings: typewriterStrings[lang],
+                autoStart: true,
+                loop: true,
+                delay: 75,
+            });
+        }
+
+        initTypewriter('es');
         const translations = {
             es: {
                 "nav-home": "Inicio", "nav-exp": "Experiencia", "nav-skills": "Stack Tecnológico", "nav-cv": "CV",
@@ -602,7 +612,7 @@
                 "about-text-1": "I am a Higher Technician in Software Development. My focus combines the creation of mobile and web applications with a solid technical background in IT support and incident resolution, prioritizing user experience.",
                 "about-text-2": "I have experience delivering solutions in agile environments (Scrum/Kanban), always prioritizing code quality and cross-platform compatibility. I am passionate about facing technical challenges that require analytical thinking and business-oriented solutions.",
                 "modal-empty-subtitle": "Project Details",
-                "modal-empty-full-desc": "Implementation of flight filters and favorites management with React Native, plus bug fixing, performance improvements and device compatibility.",
+                "modal-empty-full-desc": "Implementation of flight filters and favorites management with React Native, plus bug fixing, performance improvements and device compatibility. <br> Link: <a href='https://play.google.com/store/apps/details?id=com.emptyfly' target='_blank'>https://play.google.com/store/apps/details?id=com.emptyfly</a>",
                 "modal-padel-subtitle": "Project Details",
                 "modal-padel-desc": "TodoPadel (2026) — Comprehensive Padel tournament management platform. Developed a responsive Full-Stack application focused on user experience (clubs and players). Implemented the backend in Python with Django, ensuring transactional security and mathematical algorithms in the generation of knockout brackets and byes. To achieve an agile and modern UI, I used HTMX along with Tailwind CSS and DaisyUI, achieving instant transitions without the weight of heavy JS frameworks. The platform manages image persistence through Cloudinary and notifications via Resend API, being 100% deployed in a Render cloud environment.",
                 "about-focus": "Main Focus",
@@ -640,6 +650,9 @@
             
             // Update CV links
             updateCVLinks(currentLanguage);
+
+            // Re-init typewriter with new language strings
+            initTypewriter(currentLanguage);
         });
 
         // Set initial CV links based on default language
