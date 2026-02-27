@@ -315,7 +315,7 @@
                     <h1 class="display-3 fw-bold mb-4"><span class="text-gradient">Emanuel G. Bolig</span></h1>
                     <p class="lead text-body-secondary mb-5"><span id="hero-typewriter" class="text-primary fw-semibold"></span></p>
                     <div class="d-flex flex-column flex-lg-row justify-content-center justify-content-lg-start gap-3" data-aos="fade-up" data-aos-delay="200">
-                        <a href="mailto:egomezbolig@gmail.com" class="btn btn-primary btn-lg px-4" data-i18n="btn-contact">Hablemos</a>
+                        <a href="#contacto" class="btn btn-primary btn-lg px-4" data-i18n="btn-contact">Hablemos</a>
                         <a href="cv_emanuel_bolig_en.pdf" target="_blank" class="btn btn-outline-primary btn-lg px-4" data-i18n="btn-cv"><i class="bi bi-file-earmark-person me-2"></i>Descargar CV</a>
                     </div>
                 </div>
@@ -578,14 +578,14 @@
             es: {
                 "nav-home": "Inicio", "nav-exp": "Experiencia", "nav-skills": "Stack Tecnológico", "nav-cv": "CV",
                 "hero-tag": "Disponible para nuevos desafíos",
-                "btn-contact": "Contacto", "btn-cv": "Descargar CV", "padel-title": "TodoPadel",
+                "btn-contact": "Hablemos", "btn-cv": "Descargar CV", "padel-title": "TodoPadel",
                 "loader-text": "CARGANDO...",
                 "click-detail": "Ver detalles e imágenes →", "about-title": "Sobre mí",
                 "about-subtitle": "Técnico Superior en Desarrollo de Software.",
                 "about-text-1": "Soy Técnico Superior en Desarrollo de Software. Mi enfoque combina la creación de aplicaciones móviles y web con una sólida base técnica en soporte IT y resolución de incidentes priorizando la experiencia del usuario.",
                 "about-text-2": "Cuento con experiencia entregando soluciones en entornos ágiles (Scrum/Kanban), siempre priorizando la calidad del código y la compatibilidad multiplataforma. Me apasiona enfrentar desafíos técnicos que requieran pensamiento analítico y soluciones orientadas al negocio.",
                 "modal-empty-subtitle": "Detalles del Proyecto",
-                "modal-empty-full-desc": "Participé en el desarrollo de esta aplicación de reserva de vuelos privados utilizando React Native. Implementé la lógica de filtrado por tipo de vuelo e integración de favoritos, ademas de correcion de bugs, problemas de rendimiento y compatibilidad con diferentes dispositivos.",
+                "modal-empty-full-desc": "Participé en el desarrollo de esta aplicación de reserva de vuelos privados utilizando React Native. Implementé la lógica de filtrado por tipo de vuelo e integración de favoritos, ademas de correcion de bugs, problemas de rendimiento y compatibilidad con diferentes dispositivos. <br> Enlace: <a href='https://play.google.com/store/apps/details?id=com.emptyfly' target='_blank'>https://play.google.com/store/apps/details?id=com.emptyfly</a>",
                 "modal-padel-subtitle": "Detalles del Proyecto",
                 "modal-padel-desc": "TodoPadel (2026) — Plataforma integral de gestión de torneos de Pádel. Desarrollé una aplicación Full-Stack responsiva enfocada en la experiencia del usuario (clubes y jugadores). Implementé el backend en Python con Django, garantizando la seguridad transaccional y algoritmos matemáticos en la generación de cuadros eliminatorios y byes. Para lograr una UI ágil y moderna, utilicé HTMX junto a Tailwind CSS y DaisyUI, consiguiendo transiciones instantáneas sin el peso de frameworks pesados de JS. La plataforma gestiona la persistencia de imágenes a través de Cloudinary y notificaciones vía Resend API, estando 100% desplegada en un entorno de la nube de Render.",
                 "about-focus": "Enfoque Principal",
@@ -595,7 +595,7 @@
             en: {
                 "nav-home": "Home", "nav-exp": "Experience", "nav-skills": "Skills", "nav-cv": "CV",
                 "hero-tag": "Available for new challenges",
-                "btn-contact": "Contact", "btn-cv": "Download CV", "padel-title": "TodoPadel",
+                "btn-contact": "Let's Talk", "btn-cv": "Download CV", "padel-title": "TodoPadel",
                 "loader-text": "LOADING...",
                 "click-detail": "See details and images →", "about-title": "About Me",
                 "about-subtitle": "Software Development Technician.",
@@ -635,7 +635,7 @@
             // Update all translated elements
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                el.innerText = translations[currentLanguage][key];
+                el.innerHTML = translations[currentLanguage][key];
             });
             
             // Update CV links
