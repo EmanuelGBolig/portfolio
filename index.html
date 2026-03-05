@@ -247,29 +247,49 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Desktop Carousel (4+ images) */
-        .carousel-desktop .carousel-indicators {
-            bottom: -32px;
+        /* Multi-item Slider (desktop, 3 visible) */
+        .multi-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
         }
-        .carousel-desktop .carousel-indicators [data-bs-target] {
-            width: 8px;
-            height: 8px;
+        .multi-slider-window {
+            overflow: hidden;
+            flex: 1;
+            border-radius: 12px;
+        }
+        .multi-slider-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .multi-slider-item {
+            min-width: calc(100% / 3);
+            padding: 0 4px;
+            box-sizing: border-box;
+        }
+        .multi-slider-item .img-preview {
+            height: 40vh;
+            object-fit: cover;
+            cursor: zoom-in;
+        }
+        .multi-slider-btn {
+            background: rgba(13, 110, 253, 0.15);
+            border: 1px solid rgba(13, 110, 253, 0.3);
             border-radius: 50%;
-            background-color: var(--primary-color);
-            opacity: 0.4;
-            border: none;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background 0.2s, transform 0.2s;
+            color: var(--primary-color);
         }
-        .carousel-desktop .carousel-indicators .active {
-            opacity: 1;
-        }
-        .carousel-desktop {
-            margin-bottom: 2.5rem !important;
-        }
-        .carousel-desktop .img-preview {
-            height: 35vh;
-            object-fit: contain;
-            background: transparent;
-        }
+        .multi-slider-btn:hover { background: rgba(13, 110, 253, 0.28); transform: scale(1.08); }
+        .multi-slider-btn:disabled { opacity: 0.3; cursor: default; transform: none; }
 
         /* Mobile Navbar Spacing */
         @media (max-width: 991px) {
@@ -484,26 +504,20 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <div id="carPadelDesktop" class="carousel slide carousel-dark carousel-desktop d-none d-md-block" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active"><img src="padelapp1.jpeg" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
-                            <div class="carousel-item"><img src="padelapp2.jpeg" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
-                            <div class="carousel-item"><img src="padelapp3.jpeg" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
-                            <div class="carousel-item"><img src="padelapp4.jpeg" class="img-preview" alt="4" onclick="openLightbox(this)"></div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carPadelDesktop" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                    <div class="multi-slider d-none d-md-flex">
+                        <button class="multi-slider-btn" id="prevPadel" onclick="slideImages('padel', -1)">
+                            <i class="bi bi-chevron-left"></i>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carPadelDesktop" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                        <div class="multi-slider-window">
+                            <div class="multi-slider-track" id="sliderTrack-padel">
+                                <div class="multi-slider-item"><img src="padelapp1.jpeg" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
+                                <div class="multi-slider-item"><img src="padelapp2.jpeg" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
+                                <div class="multi-slider-item"><img src="padelapp3.jpeg" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
+                                <div class="multi-slider-item"><img src="padelapp4.jpeg" class="img-preview" alt="4" onclick="openLightbox(this)"></div>
+                            </div>
+                        </div>
+                        <button class="multi-slider-btn" id="nextPadel" onclick="slideImages('padel', 1)">
+                            <i class="bi bi-chevron-right"></i>
                         </button>
                     </div>
                     <h6 class="fw-bold text-primary" data-i18n="modal-padel-subtitle">Detalles del Proyecto</h6>
@@ -801,6 +815,30 @@
                 modal.hide();
             }
         }
+
+        // Multi-item slider
+        const sliderState = {};
+        const sliderConfig = {
+            padel: { total: 4, visible: 3, prevBtn: 'prevPadel', nextBtn: 'nextPadel' }
+        };
+
+        function slideImages(id, direction) {
+            const cfg = sliderConfig[id];
+            const track = document.getElementById('sliderTrack-' + id);
+            if (!track) return;
+            if (sliderState[id] === undefined) sliderState[id] = 0;
+            const maxIndex = cfg.total - cfg.visible;
+            sliderState[id] = Math.max(0, Math.min(sliderState[id] + direction, maxIndex));
+            const pct = (100 / cfg.visible) * sliderState[id];
+            track.style.transform = `translateX(-${pct}%)`;
+            document.getElementById(cfg.prevBtn).disabled = sliderState[id] === 0;
+            document.getElementById(cfg.nextBtn).disabled = sliderState[id] === maxIndex;
+        }
+
+        // Init slider button states
+        document.addEventListener('DOMContentLoaded', () => {
+            for (const id in sliderConfig) slideImages(id, 0);
+        });
     </script>
 </body>
 </html>
