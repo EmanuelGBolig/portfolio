@@ -828,17 +828,10 @@
             if (!track) return;
             if (sliderState[id] === undefined) sliderState[id] = 0;
             const maxIndex = cfg.total - cfg.visible;
-            sliderState[id] = Math.max(0, Math.min(sliderState[id] + direction, maxIndex));
+            sliderState[id] = (sliderState[id] + direction + maxIndex + 1) % (maxIndex + 1);
             const pct = (100 / cfg.visible) * sliderState[id];
             track.style.transform = `translateX(-${pct}%)`;
-            document.getElementById(cfg.prevBtn).disabled = sliderState[id] === 0;
-            document.getElementById(cfg.nextBtn).disabled = sliderState[id] === maxIndex;
         }
-
-        // Init slider button states
-        document.addEventListener('DOMContentLoaded', () => {
-            for (const id in sliderConfig) slideImages(id, 0);
-        });
     </script>
 </body>
 </html>
