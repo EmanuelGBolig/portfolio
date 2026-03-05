@@ -247,6 +247,25 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* Desktop Carousel (4+ images) */
+        .carousel-desktop .carousel-indicators {
+            bottom: -32px;
+        }
+        .carousel-desktop .carousel-indicators [data-bs-target] {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            opacity: 0.4;
+            border: none;
+        }
+        .carousel-desktop .carousel-indicators .active {
+            opacity: 1;
+        }
+        .carousel-desktop {
+            margin-bottom: 2.5rem !important;
+        }
+
         /* Mobile Navbar Spacing */
         @media (max-width: 991px) {
             .navbar-toggler {
@@ -460,11 +479,27 @@
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>
-                    <div class="row g-2 d-none d-md-flex mb-3">
-                        <div class="col-3"><img src="padelapp1.jpeg" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
-                        <div class="col-3"><img src="padelapp2.jpeg" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
-                        <div class="col-3"><img src="padelapp3.jpeg" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
-                        <div class="col-3"><img src="padelapp4.jpeg" class="img-preview" alt="4" onclick="openLightbox(this)"></div>
+                    <div id="carPadelDesktop" class="carousel slide carousel-dark carousel-desktop d-none d-md-block" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carPadelDesktop" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active"><img src="padelapp1.jpeg" class="img-preview" alt="1" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="padelapp2.jpeg" class="img-preview" alt="2" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="padelapp3.jpeg" class="img-preview" alt="3" onclick="openLightbox(this)"></div>
+                            <div class="carousel-item"><img src="padelapp4.jpeg" class="img-preview" alt="4" onclick="openLightbox(this)"></div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carPadelDesktop" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carPadelDesktop" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                     <h6 class="fw-bold text-primary" data-i18n="modal-padel-subtitle">Detalles del Proyecto</h6>
                     <p class="small text-body-secondary" data-i18n="modal-padel-desc">TodoPadel (2026) — Plataforma integral de gestión de torneos de Pádel. Desarrollé una aplicación Full-Stack responsiva enfocada en la experiencia del usuario (clubes y jugadores). Implementé el backend en Python con Django, garantizando la seguridad transaccional y algoritmos matemáticos en la generación de cuadros eliminatorios y byes. Para lograr una UI ágil y moderna, utilicé HTMX junto a Tailwind CSS y DaisyUI, consiguiendo transiciones instantáneas sin el peso de frameworks pesados de JS. La plataforma gestiona la persistencia de imágenes a través de Cloudinary y notificaciones vía Resend API, estando 100% desplegada en un entorno de la nube de Render.</p>
@@ -703,10 +738,22 @@
             
             // Find all images in the same container (modal body) to form a gallery
             // We look for the closest .modal-body to group images from the same project
+            // Filter out images that belong to a hidden carousel (mobile carousel hidden on desktop, or vice versa)
             const container = img.closest('.modal-body');
             if (container) {
-                currentGalleryImages = Array.from(container.querySelectorAll('.img-preview'));
+                const allImgs = Array.from(container.querySelectorAll('.img-preview'));
+                currentGalleryImages = allImgs.filter(i => {
+                    // Walk up ancestors until modal-body; if any ancestor is hidden, skip this img
+                    let el = i.parentElement;
+                    while (el && el !== container) {
+                        const style = window.getComputedStyle(el);
+                        if (style.display === 'none') return false;
+                        el = el.parentElement;
+                    }
+                    return true;
+                });
                 currentImageIndex = currentGalleryImages.indexOf(img);
+                if (currentImageIndex === -1) currentImageIndex = 0;
             } else {
                 // Fallback if not inside a modal (though current usage is all inside modals)
                 currentGalleryImages = [img];
